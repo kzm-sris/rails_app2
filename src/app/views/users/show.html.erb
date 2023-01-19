@@ -1,2 +1,29 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+ <div class = "card m-3" style="width: 18rem;">
+    <div class="card-img-top">
+      <p><%= image_tag @user.get_profile_image(100,100) %></p>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title"><%= @user.name %></h5>
+      <%= link_to "Profile Edit", edit_user_path(@user.id), class: "btn btn-primary" %>
+    </div>
+  </div>
+
+<div class="card-list-container py-5">
+  <% @post_books.each do |post_book| %>
+  <div class="card w-50 mx-auto mt-4 shadow-lg">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-10">
+          <p class="card-title">
+            <%= link_to(post_book_path(post_book.id), class:"text-dark") do %>
+              <strong><i class="far fa-flag"></i><span> <%= post_book.title %></span></strong>
+            <% end %>
+          </p>
+          <p class="card-text">Story：<%= post_book.body %></p>
+          <span><i class="fas fa-user"></i> By <%= post_book.user.name %> ｜ </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>

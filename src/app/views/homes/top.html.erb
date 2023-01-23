@@ -1,1 +1,26 @@
-<h1>Homes#top</h1>
+<div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5 fw-bold">Welcome to ShortShort!</h1>
+    <h2>Let's start!</h2>
+    <div class="col-lg-6 mx-auto">
+        <p class="lead mb-4">
+            "100字以内で小説を書いて公開してみよう"
+        </p>
+    </div>
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <% if user_signed_in? %>
+        <button type="button" class="btn btn-primary btn-lg px-4 me-sm-3">
+            <%= link_to "Sign Up", new_user_registration_path, class: 'nav-link text-dark' %>
+        </button>
+        <button type="button" class="btn btn-outline-secondary btn-lg px-4">
+            <%= link_to 'My Page', user_path(current_user.id), class: 'nav-link text-dark' %>
+        </button>
+        <% else %>
+        <button type="button" class="btn btn-primary btn-lg px-4 me-sm-3">
+            <%= link_to "Sign Up", new_user_registration_path, class: 'nav-link text-dark' %>
+        </button>
+        <button type="button" class="btn btn-outline-secondary btn-lg px-4">
+            <%= link_to "Log in", new_user_session_path, class: 'nav-link text-dark' %>
+        </button>
+        <% end %>
+    </div>
+</div>

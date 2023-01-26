@@ -1,9 +1,33 @@
+<div class="card-list-container py-5">
+  <div class="card w-50 mx-auto mt-4 shadow-lg">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-8">
+          <p class="card-title">
+            <strong><i class="fa-solid fa-book"></i><span> <%= @post_book.title %></span></strong>
+          </p>
+          <p>Date：<%= @post_book.created_at.strftime('%Y/%m/%d') %></p>
+          <p class="card-text">Story：<%= @post_book.body %></p>
+          <span><i class="fas fa-user"></i> By <%= @post_book.user.name %> ｜ </span>
+          <% if @post_book.user == current_user %>
+            <%= link_to "Delete", post_book_path(@post_book), method: :delete %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div>
-  <p>UserName：<%= @post_book.user.name %></p>
-  <p>Title：<%= @post_book.title %></p>
-  <p>Story：<%= @post_book.body %></p>
-  <p>Date：<%= @post_book.created_at.strftime('%Y/%m/%d') %></p>
-   <% if @post_book.user == current_user %>
-    <%= link_to "Delete", post_book_path(@post_book), method: :delete %>
+  <%= @post_book.book_comments.each do |post_comment| %>
+    <%= book_comment.user.name %>
+    <%= book_comment.comment %>
+  <% end %>
+</div>
+
+<div>
+  <%= form_with model: [@post_image, @book_comment] do |f| %>
+    <%= f.text_area :comment, rows: '5', placeholder: "コメントを書く" %>
+    <%= f.submit "comment" %>
   <% end %>
 </div>

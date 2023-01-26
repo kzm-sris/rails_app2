@@ -16,8 +16,9 @@ class PostBooksController < ApplicationController
 
   def show
     @post_book = PostBook.find(params[:id])
+    @post_comment = PostComment.new
   end
-  
+
   def destroy
     @post_book = PostBook.find(params[:id])
     @post_book.delete

@@ -47,6 +47,31 @@
         </div>
       </nav>
     </header>
-    <%= yield %>
+    <main class="mb-auto">
+      <%= yield %>
+    </main>
+    <footer class="bg-dark text-white pt-5 pt-5 ">
+      <div class="container">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <p>Short Short</p>
+          </div>
+          <div class="col-md-4">
+            <h6>このアプリについて</h6>
+            <ul class="menu list-unstyled">
+              <li>
+                <a class="text-light text-decoration-none" href="" data-toggle="collapse" data-target="#ex-1" area-expanded="false" area-control="ex-1">作成者</a>
+                <p class="collapse" id="ex-1">
+                  某国立大学院生 S.K
+                </p>
+              </li>
+              <li>
+                <%= link_to 'Top', root_path, class: 'text-light' %>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

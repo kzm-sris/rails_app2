@@ -19,14 +19,14 @@
 </div>
 
 <div>
-  <%= @post_book.book_comments.each do |post_comment| %>
+  <% @post_book.book_comments.each do |book_comment| %>
     <%= book_comment.user.name %>
     <%= book_comment.comment %>
   <% end %>
 </div>
 
 <div>
-  <%= form_with model: [@post_image, @book_comment] do |f| %>
+  <%= form_with model: [@post_book, @book_comment] do |f| %>
     <%= f.text_area :comment, rows: '5', placeholder: "コメントを書く" %>
     <%= f.submit "comment" %>
   <% end %>

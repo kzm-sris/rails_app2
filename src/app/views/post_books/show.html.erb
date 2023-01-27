@@ -18,16 +18,27 @@
   </div>
 </div>
 
-<div>
-  <% @post_book.book_comments.each do |book_comment| %>
-    <%= book_comment.user.name %>
-    <%= book_comment.comment %>
+
+<div class="container pt-2 bg-light">
+  <div class="comment-title"><h2>みんなのコメント</h2></div>
+  <div class="comment-field p-4 mb-3">
+    <% @post_book.book_comments.each do |book_comment| %>
+    <div class="comment-box d-flex bg-highlight mb-3 border">
+      <div class="comment-user-name text-black p-2 border-right"><p><%= book_comment.user.name %><p></div>
+      <div class="comment-body flex-grow-1 border-right text-black p-2"><p><%= book_comment.comment %></p></div>
+      <% if book_comment.user == current_user %>
+        <div class="comment-delete ml-auto p-2"><p class="border-bottom"><%= link_to "削除", post_book_book_comment_path(book_comment.post_book ,book_comment), method: :delete %></p></div>
+      <% end %>
+    </div>
   <% end %>
+  </div>
 </div>
 
-<div>
-  <%= form_with model: [@post_book, @book_comment] do |f| %>
-    <%= f.text_area :comment, rows: '5', placeholder: "コメントを書く" %>
-    <%= f.submit "comment" %>
-  <% end %>
+<div class="container p-3 mb-5 bg-light">
+  <h2>コメントする<h2/>
+  <div class="post-comment bg-white p-2">
+    <%= form_with model: [@post_book, @book_comment] do |f| %>
+      <div><p><%= f.text_area :comment, rows: '5', placeholder: "コメントを書く" %></p></div>
+      <div><p><%= f.submit "comment" %></p></div>
+    <% end %>
 </div>

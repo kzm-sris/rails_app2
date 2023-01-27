@@ -1,6 +1,8 @@
+<div class="p-5">
 <h1>投稿フォーム</h1>
     <%= form_with model: @post_book do |f| %>
         <p><%= f.text_field :title, class:"form-control", placeholder:"Title" %></p>
         <p><%= f.text_area :body, class:"form-control", placeholder:"Story in 100 words" %></p>
-        <%= f.submit 'Post', class:"btn btn-lg btn-block btn-info mt-4" %>
+        <div class="text-right"><%= f.submit 'Post', class:"btn btn-lg btn-primary mt-4" %></div>
     <% end %>
+</div>

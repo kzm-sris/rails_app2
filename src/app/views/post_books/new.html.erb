@@ -1,8 +1,26 @@
+<div class="error-message p-5 border">
+    <% if @post_book.errors.any? %>
+        <%= @post_book.errors.count %>エラー
+        <% @post_book.errors.full_messages.each do |message|%>
+            <p><%= message %></p>
+        <% end %>
+    <% end %>
+</div>
+
 <div class="p-5">
 <h1>投稿フォーム</h1>
     <%= form_with model: @post_book do |f| %>
         <p><%= f.text_field :title, class:"form-control", placeholder:"Title" %></p>
         <p><%= f.text_area :body, class:"form-control", placeholder:"Story in 100 words" %></p>
+        <p class="border p-2">
+            <%= f.label :category, 'カテゴリ', class: "font-weight-bold pr-3" %>
+            <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name, include_hidden: false) do |category| %>
+                <%= category.label do %>
+                    <%= category.check_box %>
+                    <%= category.text %>
+                <% end %>
+            <% end %>
+        </p>
         <div class="text-right"><%= f.submit 'Post', class:"btn btn-lg btn-primary mt-4" %></div>
     <% end %>
 </div>

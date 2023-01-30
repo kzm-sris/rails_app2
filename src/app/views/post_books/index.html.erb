@@ -1,4 +1,17 @@
-<div class="card-list-container py-5">
+<div class="px-5 pt-5">
+<%= form_tag post_books_path, method: :get, class: 'boards_serchForm'  do %>
+  <% select_tag :category_id,
+                options_from_collection_for_select(Category.all, :id, :name, params[:category_id]),
+                {
+                  prompt: 'カテゴリー検索',
+                  onchange: 'submit(this.form)'
+                }
+  %>
+<% end %>
+</div>
+
+<%# 投稿一覧　%>
+<div class="card-list-container py-5 mb-5">
   <% @post_books.each do |post_book| %>
   <div class="card w-50 mx-auto mt-4 shadow-lg">
     <div class="card-body">
@@ -11,6 +24,11 @@
           </p>
           <p class="card-text">Story：<%= post_book.body %></p>
           <span><i class="fas fa-user"></i> By <%= post_book.user.name %> ｜ </span>
+          <span class="text-dark p-1">
+          <% post_book.categories.each do |category| %>
+            #<%= category.name %>
+          <% end %>
+          </span>
         </div>
       </div>
     </div>

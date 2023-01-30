@@ -6,12 +6,15 @@ class PostBooksController < ApplicationController
   def create
     @post_book = PostBook.new(post_book_params)
     @post_book.user_id = current_user.id
-    @post_book.save
-    redirect_to post_books_path
+    if @post_book.save
+      redirect_to post_books_path
+    else
+      render :new
+    end
   end
 
   def index
-    @post_books = PostBook.all
+    @post_books = params[:category_id].present? ? Category.find(params[:category_id]).post_books : PostBook.all
   end
 
   def show
@@ -28,6 +31,6 @@ class PostBooksController < ApplicationController
   private
 
   def post_book_params
-    params.require(:post_book).permit(:title, :body)
+    params.require(:post_book).permit(:title, :body, category_ids: [])
   end
 end

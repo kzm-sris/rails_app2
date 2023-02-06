@@ -6,7 +6,7 @@ orbs:
 jobs:
   build:
     docker:
-      -image: circleci/ruby:2.7
+      - image: circleci/ruby:2.7
     working_directory: ~/rails_app2/src
     steps:
       - checkout:
@@ -44,5 +44,5 @@ workflows:
     jobs:
       - build
       - test:
-        requires:
-         -build
+          requires:
+            - build

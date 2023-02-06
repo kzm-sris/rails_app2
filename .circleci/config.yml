@@ -5,13 +5,13 @@ orbs:
 
 jobs:
   build:
-  docker:
-    -image: circleci/ruby:2.7
-  working_directory: ~/documents/rails_app2/src
-  steps:
-    - checkout:
-        path: ~/documents/rails_app2
-    - ruby/install-deps
+    docker:
+      -image: circleci/ruby:2.7
+    working_directory: ~/documents/rails_app2/src
+    steps:
+      - checkout:
+          path: ~/documents/rails_app2
+      - ruby/install-deps
 
   test:
     docker:

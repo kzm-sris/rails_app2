@@ -7,10 +7,10 @@ jobs:
   build:
     docker:
       -image: circleci/ruby:2.7
-    working_directory: ~/documents/rails_app2/src
+    working_directory: /Users/kazuma/Documents/rails_app2/src
     steps:
       - checkout:
-          path: ~/documents/rails_app2
+          path: /Users/kazuma/Documents/rails_app2
       - ruby/install-deps
 
   test:
@@ -26,10 +26,10 @@ jobs:
       BUNDLE_RETRY: "3"
       APP_DATABASE_HOST: "127.0.0.1"
       RAILS_ENV: test
-    working_directory: ~/documents/rails_app2/src
+    working_directory: /Users/kazuma/Documents/rails_app2/src
     steps:
       - checkout:
-          path: ~/documents/rails_app2
+          path: /Users/kazuma/Documents/rails_app2
       - ruby/install-deps
       - run:
           name: Database setup

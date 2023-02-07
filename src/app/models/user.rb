@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :post_books, dependent: :destroy
   has_many :book_comments, dependent: :destroy
   has_one_attached :profile_image
+  validates :email, uniqueness: true
 
   def get_profile_image(width, height)
     unless profile_image.attached?
